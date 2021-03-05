@@ -11,7 +11,7 @@ public class GreetingController {
 
     private GreetingService greetingService;
 
-    @RequestMapping(value = "/greeting", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String greeting(@RequestParam(name = "name", defaultValue = "World") String name) {
         return greetingService.greet(name);
     }
