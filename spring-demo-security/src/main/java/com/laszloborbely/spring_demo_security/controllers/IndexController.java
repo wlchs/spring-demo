@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class SecretController {
-    @RequestMapping(value = "/secret", method = RequestMethod.GET)
+public class IndexController {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showForm() {
-        return "secret";
+        return "index";
     }
 }
