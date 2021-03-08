@@ -7,6 +7,12 @@
 
     <bean class="com.laszloborbely.spring_demo_security.controllers.IndexController" id="indexController"/>
     <bean class="com.laszloborbely.spring_demo_security.controllers.SecretController" id="secretController"/>
+    <bean class="com.laszloborbely.spring_demo_security.controllers.TopSecretController" id="topSecretController"/>
+
+    <bean class="com.laszloborbely.spring_demo_security.user.ApplicationUserRepository" id="userRepository"/>
+    <bean class="com.laszloborbely.spring_demo_security.controllers.RegisterController" id="registerController">
+        <property name="userRepository" ref="userRepository"/>
+    </bean>
 
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
