@@ -3,13 +3,29 @@ package com.laszloborbely.spring_demo_security.user;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Collection;
 
+@Entity
 public class ApplicationUser implements UserDetails {
-    private final String userName;
-    private final String password;
-    private final Collection<GrantedAuthority> authorities;
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String userName;
+    private String password;
+
+    @OneToMany
+    private final Collection<ApplicationUserRole> authorities;
+
+    public ApplicationUser() {
+        authorities = new ArrayList<>();
+        authorities.add(new ApplicationUserRole("ROLE_ANONYMOUS"));
+    }
 
     public ApplicationUser(String userName, String password) {
         this.userName = userName;
@@ -22,7 +38,6 @@ public class ApplicationUser implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
-
 
     @Override
     public String getUsername() {
@@ -58,7 +73,7 @@ public class ApplicationUser implements UserDetails {
         authorities.add(new ApplicationUserRole(role));
     }
 
-    public Collection<GrantedAuthority> getRoles() {
+    public Collection<ApplicationUserRole> getRoles() {
         return authorities;
     }
 }

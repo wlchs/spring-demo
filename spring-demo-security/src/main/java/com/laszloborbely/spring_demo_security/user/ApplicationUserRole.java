@@ -2,8 +2,20 @@ package com.laszloborbely.spring_demo_security.user;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class ApplicationUserRole implements GrantedAuthority {
-    private final String role;
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String role;
+
+    public ApplicationUserRole() {
+    }
 
     public ApplicationUserRole(String role) {
         this.role = role;
@@ -12,5 +24,9 @@ public class ApplicationUserRole implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return role;
+    }
+
+    public void setAuthority(String role) {
+        this.role = role;
     }
 }
