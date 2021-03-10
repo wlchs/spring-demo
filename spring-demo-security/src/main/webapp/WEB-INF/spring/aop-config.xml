@@ -7,12 +7,6 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/aop
        https://www.springframework.org/schema/aop/spring-aop.xsd">
-    <bean class="com.laszloborbely.spring_demo_security.aspects.IndexAfterReturnAspect" id="afterReturnAspect"/>
-    <aop:config>
-        <aop:aspect id="aspects" ref="afterReturnAspect">
-            <aop:pointcut id="pointCutAfterReturning"
-                          expression="execution(* com.laszloborbely.spring_demo_security.controllers.*Controller+.*(..))"/>
-            <aop:after-returning method="afterReturn" returning="returnValue" pointcut-ref="pointCutAfterReturning"/>
-        </aop:aspect>
-    </aop:config>
+    <aop:aspectj-autoproxy/>
+    <bean class="com.laszloborbely.spring_demo_security.aspects.ControllerLoggerAspect" id="loggerAspect"/>
 </beans>
